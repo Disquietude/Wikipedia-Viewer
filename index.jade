@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Wikipedia Viewer
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css", integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO", crossorigin="anonymous")
+    link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.2.0/css/all.css", integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ", crossorigin="anonymous")
+    link(rel="stylesheet", href="styles.css")
+  body
+    .container-fluid(ng-app="wikiApp" ng-controller="wikiCtrl")
+      nav.navbar.bg-light.navbar-dark.mt-2.py-2
+        a.navbar-brand
+          i.fab.fa-wikipedia-w ikipedia Viewer
+        form.form-inline.flex-grow-1(ng-submit="search(query)")
+          .input-group.flex-grow-1.mr-2
+            input.form-control(type="text" placeholder="Search" ng-model="query")
+            .input-group-append
+              button.btn(type="submit")
+                i.fa.fa-search
+          button.btn#random(ng-click="random()") Random
+      .bg-light.pl-3.pt-3.my-3.result(ng-repeat="result in results") 
+        h3
+          a(href="{{ 'https://en.wikipedia.org/?curid='+result.pageid }}" target="_blank")  {{result.title}}
+        p {{result.snippet | snippet}}
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js")
+    script(src="app.js")
