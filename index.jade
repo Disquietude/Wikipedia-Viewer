@@ -10,16 +10,16 @@ html(lang="en")
     link(rel="stylesheet", href="styles.css")
   body
     .container-fluid(ng-app="wikiApp" ng-controller="wikiCtrl")
-      nav.navbar.bg-light.navbar-dark.mt-2.py-2
+      nav.navbar.bg-light.navbar-dark.mt-2.py-2.flex-column.flex-sm-row
         a.navbar-brand
           i.fab.fa-wikipedia-w ikipedia Viewer
-        form.form-inline.flex-grow-1(ng-submit="search(query)")
+        form.form-inline.flex-grow-1.flex-column.flex-sm-row(ng-submit="search(query)")
           .input-group.flex-grow-1.mr-2
             input.form-control(type="text" placeholder="Search" ng-model="query")
             .input-group-append
               button.btn(type="submit")
                 i.fa.fa-search
-          button.btn#random(ng-click="random()") Random
+          button.btn.mt-2.mt-sm-0#random(ng-click="random()") Random
       .bg-light.pl-3.pt-3.my-3.result(ng-repeat="result in results") 
         h3
           a(href="{{ 'https://en.wikipedia.org/?curid='+result.pageid }}" target="_blank")  {{result.title}}
